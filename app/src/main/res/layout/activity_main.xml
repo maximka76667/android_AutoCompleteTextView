@@ -35,6 +35,30 @@
                 android:layout_marginLeft="15dp"
                 android:visibility="gone" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/button_back"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="\u003c" />
+
+            <Button
+                android:id="@+id/button_forward"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="\u003e" />
+
+            <Button
+                android:id="@+id/button_refresh"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="*" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <WebView

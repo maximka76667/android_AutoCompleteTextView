@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    WebLink[] links = {new WebLink("Google", "google.com"), new WebLink("Amazon", "amazon.com"), new WebLink("SpaceX", "spacex.com")};
+    WebLink[] links = {new WebLink("Google", "https://google.com"), new WebLink("Amazon", "https://amazon.com"), new WebLink("SpaceX", "https://spacex.com"), new WebLink("Prueba", "file:///android_asset/index.html")};
     String selectedLink;
 
     @Override
@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
         AutoCompleteTextView autoCompleteTextView = this.findViewById(R.id.autoCompleteTextView);
         Button button = this.findViewById(R.id.button);
+        Button refreshButton = this.findViewById(R.id.button_refresh);
+        Button backButton = this.findViewById(R.id.button_back);
+        Button forwardButton = this.findViewById(R.id.button_forward);
         WebView webView = this.findViewById(R.id.webView);
         ProgressBar progressBar = this.findViewById(R.id.progressBar);
 
@@ -47,14 +50,35 @@ public class MainActivity extends AppCompatActivity {
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedLink = (String) ((WebLink) (adapterView.getItemAtPosition(i))).getLink();
+                selectedLink = ((WebLink) adapterView.getItemAtPosition(i)).getLink();
             }
         });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                webView.loadUrl("https://" + selectedLink);
+                webView.loadUrl(selectedLink);
+            }
+        });
+
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                webView.reload();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                webView.goBack();
+            }
+        });
+
+        forwardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                webView.goForward();
             }
         });
     }
